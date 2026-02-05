@@ -3,11 +3,7 @@ from fastapi.responses import Response
 
 app = FastAPI()
 
-@app.get("/")
-def health():
-    return {"status": "ok"}
-
-@app.post("/twilio/webhook")
+@app.api_route("/twilio/webhook", methods=["GET", "POST"])
 async def twilio_webhook(request: Request):
     twiml = """<?xml version="1.0" encoding="UTF-8"?>
 <Response>
